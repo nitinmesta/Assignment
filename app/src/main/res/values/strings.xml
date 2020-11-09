@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Rakuten</string>
+    <string name="lbl_enter_city_name">Enter city name</string>
+    <string name="no_data">No saved data!</string>
+</resources>
