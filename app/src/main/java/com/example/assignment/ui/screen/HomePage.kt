@@ -6,6 +6,7 @@ import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.SearchView
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.assignment.R
@@ -14,6 +15,7 @@ import com.example.assignment.data.model.*
 import com.example.assignment.isNetworkAvailable
 import com.example.assignment.ui.adapter.CityWeatherAdapter
 import com.example.assignment.viewmodel.HomePageViewModel
+import com.example.assignment.viewmodel.ViewModelFactory
 import com.google.android.material.snackbar.Snackbar
 
 class HomePage : AppCompatActivity() {
@@ -42,7 +44,7 @@ class HomePage : AppCompatActivity() {
                 hideProgressLoader()
                 showDataLayout(
                     if (it.isNotEmpty()) {
-                        cityWeatherAdapter.setCityWeatherData(ArrayList(it),query)
+                        cityWeatherAdapter.setCityWeatherData(ArrayList(it), query)
                         true
                     } else {
                         false
@@ -58,8 +60,10 @@ class HomePage : AppCompatActivity() {
         progressLoader = findViewById(R.id.progress_layout)
         progressText = findViewById(R.id.progress_text)
         searchView = findViewById(R.id.search_field)
-        //TODO get the view model from factory
-        viewModel = HomePageViewModel((application as WeatherApp).weatherDatabase)
+        viewModel = ViewModelProvider(this, ViewModelFactory(application as WeatherApp)).get(
+            HomePageViewModel::class.java
+        )
+        //HomePageViewModel((application as WeatherApp).weatherDatabase)
         cityWeatherAdapter = CityWeatherAdapter()
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = cityWeatherAdapter
