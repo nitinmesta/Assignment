@@ -13,9 +13,4 @@ class WeatherApp : Application() {
             "weather_db"
         ).build()
     }
-
-    fun getDb(): WeatherDatabase {
-        return weatherDatabase
-    }
-
 }

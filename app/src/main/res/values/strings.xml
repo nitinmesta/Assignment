@@ -1,8 +1,11 @@
 <resources>
     <string name="app_name">Rakuten</string>
-    <string name="lbl_enter_city_name">Enter city name</string>
+    <string name="lbl_enter_city_name">Enter city name for weather details</string>
     <string name="no_data">No saved data!</string>
     <string name="weather_data_not_found">Weather info not found for %s</string>
     <string name="err_enter_city">Please enter city</string>
     <string name="err_generic">Something went wrong. Please try again!</string>
+    <string name="msg_loading_saved_data">Loading saved data. Please wait!</string>
+    <string name="msg_retriving_weather_data_for">Retrieving weather data for %s</string>
+    <string name="err_no_internet">Please check your internet connection</string>
 </resources>
