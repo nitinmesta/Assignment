@@ -1,4 +1,4 @@
-package com.example.rakuten.data
+package com.example.rakuten.data.model
 
 data class Location(
     val name: String,

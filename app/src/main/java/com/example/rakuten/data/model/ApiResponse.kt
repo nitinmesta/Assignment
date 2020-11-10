@@ -1,7 +1,6 @@
-package com.example.rakuten.data
+package com.example.rakuten.data.model
 
 
-import com.google.gson.Gson
 import retrofit2.Response
 
 sealed class ApiResponse<T> {
@@ -11,9 +10,9 @@ sealed class ApiResponse<T> {
                 when (val body = response.body()) {
                     is WeatherResponse -> {
                         if (body.error != null) {
-                            WeatherApiSuccessResponse(WeatherAttribute(body.location, body.current))
-                        } else {
                             WeatherApiErrorResponse(WeatherErrorResponse(body.success, body.error))
+                        } else {
+                            WeatherApiSuccessResponse(WeatherAttribute(body.location, body.current))
                         }
                     }
                     else -> WeatherApiUnknownError()

@@ -1,8 +1,8 @@
 package com.example.rakuten.network.api
 
 import androidx.lifecycle.LiveData
-import com.example.rakuten.data.ApiResponse
-import com.example.rakuten.data.WeatherResponse
+import com.example.rakuten.data.model.ApiResponse
+import com.example.rakuten.data.model.WeatherResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

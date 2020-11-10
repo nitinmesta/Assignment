@@ -1,7 +1,7 @@
 package com.example.rakuten.network.adapter
 
 import androidx.lifecycle.LiveData
-import com.example.rakuten.data.ApiResponse
+import com.example.rakuten.data.model.ApiResponse
 import retrofit2.Call
 import retrofit2.CallAdapter
 import retrofit2.Callback

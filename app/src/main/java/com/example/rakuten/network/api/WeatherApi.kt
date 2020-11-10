@@ -1,8 +1,8 @@
 package com.example.rakuten.network.api
 
 import androidx.lifecycle.LiveData
-import com.example.rakuten.data.ApiResponse
-import com.example.rakuten.data.WeatherResponse
+import com.example.rakuten.data.model.ApiResponse
+import com.example.rakuten.data.model.WeatherResponse
 import com.example.rakuten.network.adapter.LiveDataCallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="weather_icon_home_page">48dp</dimen>
+    <dimen name="weather_card_elevation">5dp</dimen>
+    <dimen name="weather_card_margin">1dp</dimen>
+    <dimen name="weather_card_padding">5dp</dimen>
+    <dimen name="txt_size_city_name">20sp</dimen>
+    <dimen name="txt_size_temp">18sp</dimen>
+    <dimen name="txt_size_desc">14sp</dimen>
+    <dimen name="details_margin_top">20dp</dimen>
+    <dimen name="weather_icon_detail_page">96dp</dimen>
+    <dimen name="txt_size_city_name_details">48sp</dimen>
+    <dimen name="txt_size_temp_details">24sp</dimen>
+</resources>
