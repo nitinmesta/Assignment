@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Rakuten</string>
+    <string name="app_name">Assignment</string>
     <string name="lbl_enter_city_name">Enter city name for weather details</string>
     <string name="no_data">No saved data!</string>
     <string name="weather_data_not_found">Weather info not found for %s</string>
