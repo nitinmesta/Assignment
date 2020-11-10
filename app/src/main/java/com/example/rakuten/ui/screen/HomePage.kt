@@ -25,6 +25,7 @@ class HomePage : AppCompatActivity() {
     lateinit var progressLoader: RelativeLayout
     lateinit var progressText: AppCompatTextView
     lateinit var searchView: SearchView
+    var query: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +42,7 @@ class HomePage : AppCompatActivity() {
                 hideProgressLoader()
                 showDataLayout(
                     if (it.isNotEmpty()) {
-                        cityWeatherAdapter.setCityWeatherData(ArrayList(it))
+                        cityWeatherAdapter.setCityWeatherData(ArrayList(it),query)
                         true
                     } else {
                         false
@@ -69,7 +70,9 @@ class HomePage : AppCompatActivity() {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (isNetworkAvailable(this@HomePage)) {
                     searchView.clearFocus()
+                    recyclerView.scrollToPosition(0)
                     if (!query.isNullOrBlank()) {
+                        this@HomePage.query = query
                         showProgressLoader(
                             String.format(
                                 getString(R.string.msg_retriving_weather_data_for),
@@ -95,6 +98,7 @@ class HomePage : AppCompatActivity() {
 
 
             override fun onQueryTextChange(newText: String?): Boolean {
+                this@HomePage.query = newText
                 return true
             }
 

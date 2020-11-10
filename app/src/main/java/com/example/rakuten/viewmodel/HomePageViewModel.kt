@@ -3,6 +3,7 @@ package com.example.rakuten.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.rakuten.WeatherApp
+import com.example.rakuten.convertDateToMillis
 import com.example.rakuten.data.db.WeatherDatabase
 import com.example.rakuten.data.db.entity.CityWeatherData
 import com.example.rakuten.data.model.ApiResponse
@@ -20,7 +21,8 @@ class HomePageViewModel(val weatherDatabase: WeatherDatabase) : ViewModel() {
         it.data.also {
             val cityWeatherData = CityWeatherData(
                 it.location?.name ?: "NA",
-                it.current?.temperature ?: 0, it.location?.localtime_epoch ?: 0,
+                it.current?.temperature ?: 0,
+                convertDateToMillis(it.location?.localtime ?: "", "yyyy-MM-dd HH:mm"),
                 it.current?.weather_descriptions?.getOrNull(0) ?: "NA",
                 it.current?.weather_icons?.getOrNull(0) ?: ""
             )

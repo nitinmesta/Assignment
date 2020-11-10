@@ -15,12 +15,15 @@ import androidx.core.util.Pair
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.rakuten.R
+import com.example.rakuten.WeatherApp
 import com.example.rakuten.constants.CITY_WEATHER
 import com.example.rakuten.data.db.entity.CityWeatherData
 import com.example.rakuten.ui.screen.CITY_NAME_VIEW
 import com.example.rakuten.ui.screen.CITY_TEMPERATURE
 import com.example.rakuten.ui.screen.DetailsPage
 import com.example.rakuten.ui.screen.WEATHER_ICON
+import java.util.*
+import kotlin.collections.ArrayList
 
 class CityWeatherAdapter : RecyclerView.Adapter<CityWeatherAdapter.ViewHolder>() {
     private var cityDataWeatherList = arrayListOf<CityWeatherData>()
@@ -30,8 +33,33 @@ class CityWeatherAdapter : RecyclerView.Adapter<CityWeatherAdapter.ViewHolder>()
         notifyItemInserted(cityDataWeatherList.size - 1)
     }
 
-    fun setCityWeatherData(cityDataWeatherList: ArrayList<CityWeatherData>) {
-        this.cityDataWeatherList = cityDataWeatherList
+    fun setCityWeatherData(newCityDataWeatherList: ArrayList<CityWeatherData>, query: String?) {
+        if (cityDataWeatherList.isEmpty()) {
+            this.cityDataWeatherList = newCityDataWeatherList
+
+        } else {
+            val oldList = ArrayList(cityDataWeatherList)
+            val newList = ArrayList<CityWeatherData>(newCityDataWeatherList)
+            // this logic is to to bring the newly added item onto the top
+            oldList.retainAll(newList)
+            newList.removeAll(oldList)
+            if (newList.isNotEmpty()) {
+                oldList.addAll(0, newList)
+                notifyItemRangeInserted(0, newList.size)
+            } else {
+                //no info changed so bring the queried item to front
+                val existingObject =
+                    oldList.map { it.cityName.toLowerCase(Locale.getDefault()) to it }
+                        .toMap()[query?.trim()?.toLowerCase(Locale.getDefault())]
+                val existingObjectIndex = oldList.indexOf(existingObject)
+                if (existingObjectIndex != -1 && existingObjectIndex != 0) {
+                    Collections.swap(oldList, 0, existingObjectIndex)
+                    notifyItemMoved(existingObjectIndex, 0)
+                }
+            }
+            this.cityDataWeatherList = oldList
+
+        }
         notifyDataSetChanged()
     }
 
@@ -45,6 +73,7 @@ class CityWeatherAdapter : RecyclerView.Adapter<CityWeatherAdapter.ViewHolder>()
             cityNameTextView.text = cityWeatherData.cityName
             temperatureTextView.text = "${cityWeatherData.temp}\u2103"
             descriptionTextView.text = cityWeatherData.weatherDescription
+            addUrlToSet(cityWeatherData.weatherUrl)
             if (cityWeatherData.weatherUrl.isNotEmpty()) {
                 Glide.with(view.context).load(cityWeatherData.weatherUrl)
                     .circleCrop()
@@ -59,6 +88,13 @@ class CityWeatherAdapter : RecyclerView.Adapter<CityWeatherAdapter.ViewHolder>()
                     detailsIntent,
                     getAnimationOptions(view.context)
                 )
+            }
+        }
+
+        private fun addUrlToSet(weatherUrl: String) {
+            val weatherApp = view.context.applicationContext
+            if (weatherApp is WeatherApp) {
+                weatherApp.weatherIconSet.add(weatherUrl)
             }
         }
 

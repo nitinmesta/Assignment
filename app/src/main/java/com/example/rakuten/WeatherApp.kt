@@ -6,6 +6,7 @@ import com.example.rakuten.data.db.WeatherDatabase
 
 class WeatherApp : Application() {
     lateinit var weatherDatabase: WeatherDatabase
+    val weatherIconSet = HashSet<String>()
     override fun onCreate() {
         super.onCreate()
         weatherDatabase = Room.databaseBuilder(

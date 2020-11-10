@@ -1,46 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-    tools:context=".ui.screen.DetailsPage">
+    android:fillViewport="true">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/city_name"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/details_margin_top"
-        android:gravity="center"
-        android:textSize="@dimen/txt_size_city_name_details"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/app_name" />
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        tools:context=".ui.screen.DetailsPage">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/weather_icon"
-        android:layout_width="@dimen/weather_icon_detail_page"
-        android:layout_height="@dimen/weather_icon_detail_page"
-        android:layout_marginTop="@dimen/details_margin_top"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/city_name" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/city_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/details_margin_top"
+            android:gravity="center"
+            android:textSize="@dimen/txt_size_city_name_details"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/app_name" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/city_temp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/details_margin_top"
-        android:gravity="center"
-        android:textSize="@dimen/txt_size_temp_details"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/weather_icon"
-        tools:text="@string/app_name" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/weather_icon"
+            android:layout_width="@dimen/weather_icon_detail_page"
+            android:layout_height="@dimen/weather_icon_detail_page"
+            android:layout_marginTop="@dimen/details_margin_top"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/city_name" />
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/city_temp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/details_margin_top"
+            android:gravity="center"
+            android:textSize="@dimen/txt_size_temp_details"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/weather_icon"
+            tools:text="@string/app_name" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/weather_forecast"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/regular_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/city_temp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
